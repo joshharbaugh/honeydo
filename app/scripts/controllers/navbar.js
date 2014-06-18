@@ -9,12 +9,12 @@
  */
 angular.module('honeydoApp')
   .controller('NavbarCtrl',['$scope', '$location', 'Auth', function ($scope, $location, Auth) {
+    // Initialize Bootstrap Tooltip plugin
+    angular.element('[data-toggle="tooltip"]').tooltip();
+
     $scope.menu = [{
-      'title': 'Home',
+      'title': 'Dashboard',
       'link': '/'
-    }, {
-      'title': 'Settings',
-      'link': '/settings'
     }];
     
     $scope.logout = function() {

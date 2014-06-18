@@ -21,7 +21,7 @@ angular.module('honeydoApp')
         return;
       } else {
         form.newEmail.$setValidity('mongoose', true);
-        $scope.errors.other = '';
+        $scope.errors.changeEmailError = '';
       }
 
       if(form.$valid) {

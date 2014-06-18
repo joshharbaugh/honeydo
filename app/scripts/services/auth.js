@@ -58,7 +58,7 @@ angular.module('honeydoApp')
       createUser: function(user, callback) {
         var cb = callback || angular.noop;
 
-        return User.save(user,
+        return User.save(user, user,
           function(user) {
             $rootScope.currentUser = user;
             return cb(user);
