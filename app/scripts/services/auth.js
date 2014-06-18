@@ -69,6 +69,26 @@ angular.module('honeydoApp')
       },
 
       /**
+       * Change email address
+       *  
+       * @param  {String}   newEmail 
+       * @param  {Function} callback    - optional
+       * @return {Promise}              
+       */
+      changeEmail: function(email, callback) {
+        var cb = callback || angular.noop;
+
+        return User.update({
+          email: email,
+          id: 'me'
+        }, function(user) {
+          return cb(user);
+        }, function(err) {
+          return cb(err);
+        }).$promise;
+      },
+
+      /**
        * Change password
        * 
        * @param  {String}   oldPassword 
