@@ -8,8 +8,23 @@
  * Controller of the honeydoApp
  */
 angular.module('honeydoApp')
-  .controller('MainCtrl',['$scope', '$http', function ($scope, $http) {
-    $http.get('/api/awesomeThings').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-    });
+  .controller('MainCtrl',['$scope', 'Todo', function ($scope, Todo) {
+
+    $scope.todos = Todo.query();
+    
+    $scope.addTodo = function(todo) {
+      todo.info = '';
+
+      var $resource = Todo.save(todo).$promise;
+      $resource.then(function() {
+        $scope.todos = Todo.query();
+        $scope.todo.name = '';
+      })
+      .catch( function(err) {
+        if(err) {
+          console.log(err);
+        }
+      });
+    };
+
   }]);

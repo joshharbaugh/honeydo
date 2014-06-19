@@ -14,7 +14,8 @@ angular.module('honeydoApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'ui.sortable'
 ])
   .config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {
     if(CONFIG.routing.html5Mode) {

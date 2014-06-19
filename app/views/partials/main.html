@@ -1,21 +1,29 @@
 <div ng-include="'partials/navbar'"></div>
 
-<div class="jumbotron">
-  <h1>'Allo, 'Allo <span ng-show="currentUser">{{ currentUser.name }}</span>!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!</a></p>
-</div>
-
-<div class="row marketing">
-  <div ng-repeat="thing in awesomeThings">
-      <h4>{{thing.name}}</h4>
-      <p>{{thing.info}}</p>
+<div class="container-fluid">
+  <div class="row">
+    <h3 class="section-divider">Welcome <span data-ng-show="currentUser" data-ng-bind="currentUser.name"></span></h3>
   </div>
 </div>
 
+<div class="container-fluid">
+  <form role="form" data-ng-submit="addTodo(todo)">
+    <div class="row">
+      <div class="input-group">
+        <input type="text" data-ng-model="todo.name" placeholder="What needs to be done?" class="form-control"/>
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i></button>
+        </span>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="container-fluid">
+  <ul id="todos" ui-sortable="{axis: 'y', placeholder: 'placeholder'}" data-ng-model="todos">
+    <li class="row" data-ng-repeat="todo in todos" style="cursor: move;"><p todo data-ng-model="todo" class="input-group"></p></li>
+  </ul>
+</div>
+
 <div class="footer">
-  <p>♥ from the Yeoman team</p>
 </div>
