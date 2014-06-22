@@ -1,29 +1,57 @@
-<div ng-include="'partials/navbar'"></div>
+<div class="col-sm-12 col-lg-2" data-ng-include="'partials/navbar'"></div>
 
-<div class="container-fluid">
-  <div class="row">
-    <h3 class="section-divider">Welcome <span data-ng-show="currentUser" data-ng-bind="currentUser.name"></span></h3>
-  </div>
-</div>
-
-<div class="container-fluid">
-  <form role="form" data-ng-submit="addTodo(todo)">
+<div class="col-sm-12 col-lg-10">
+  <div class="container-fluid">
     <div class="row">
-      <div class="input-group">
-        <input type="text" data-ng-model="todo.name" placeholder="What needs to be done?" class="form-control"/>
-        <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i></button>
-        </span>
+      <h3 class="section-divider">Welcome <span data-ng-show="currentUser" data-ng-bind="currentUser.name"></span></h3>
+    </div>
+  </div>
+
+  <div class="container-fluid" data-ng-show="!isLoggedIn">
+    <div class="row">
+      <div class="jumbotron">
+        <p>Some marketing content here.</p>
       </div>
     </div>
-  </form>
-</div>
+  </div>
 
-<div class="container-fluid">
-  <ul id="todos" ui-sortable="{axis: 'y', placeholder: 'placeholder'}" data-ng-model="todos">
-    <li class="row" data-ng-repeat="todo in todos" style="cursor: move;"><p todo data-ng-model="todo" class="input-group"></p></li>
-  </ul>
-</div>
+  <div class="container-fluid" data-ng-show="isLoggedIn">
+    <form role="form" data-ng-submit="addTodo(todo)">
+      <div class="row">
+        <div class="input-group">
+          <input type="text" data-ng-model="todo.name" placeholder="What needs to be done?" class="form-control"/>
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i></button>
+          </span>
+        </div>
+      </div>
+    </form>    
+  </div>
 
-<div class="footer">
+  <div class="container-fluid" data-ng-show="isLoggedIn">
+    <ul id="todos" ui-sortable="{axis: 'y', placeholder: 'placeholder'}" data-ng-model="todos">
+      <li class="row" data-ng-repeat="todo in todos" style="cursor: move;"><p todo data-ng-model="todo" class="input-group"></p></li>
+    </ul>
+    <form role="form" data-ng-submit="sendSMS(todos)">
+      <div class="row">
+        <div class="input-group">
+          <input type="tel" data-ng-model="phoneNumber" placeholder="+17402020906" class="form-control"/>
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Send</button>
+          </span>
+        </div>
+      </div>
+    </form>
+    <div class="row" data-ng-hide="!sending">
+      <div class="progress progress-striped active" style="margin-top:20px; margin-bottom:0px;">
+        <div class="progress-bar"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+      </div>
+    </div>
+    <div class="row" data-ng-hide="!alert">
+      <div class="alert" style="margin-top:20px; margin-bottom:0px;" data-ng-class="{'alert-warning': alert.type=='warning', 'alert-success': alert.type=='success', 'alert-danger': alert.type=='error'}">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong data-ng-bind="alert.title"></strong> <span data-ng-bind="alert.message"></span>
+      </div>
+    </div>
+  </div>
 </div>

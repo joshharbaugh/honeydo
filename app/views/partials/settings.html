@@ -1,70 +1,66 @@
-<div ng-include="'partials/navbar.html'"></div>
+<div class="col-sm-12 col-lg-2" data-ng-include="'partials/navbar'"></div>
 
-<div class="row">
-  <div class="col-sm-12">
-    <h1>Settings</h1>
-  </div>
-  <div class="col-sm-12">
-
-    <div id="profile">
-      <h3 class="section-divider">My Account</h3>
+<div class="col-sm-12 col-lg-10">
+  <div class="container-fluid">
+    <div class="row">
+      <h3 class="section-divider">Settings</h3>
     </div>
+    <div class="row">
+      <div id="settings">
+        <div id="credentials">
+          <div id="email">
+            <i class="glyphicon glyphicon-envelope text-muted"></i>
 
-    <div id="settings">
-      <div id="credentials">
-        <div id="email">
-          <i class="glyphicon glyphicon-envelope text-muted"></i>
+            <a data-toggle="collapse" data-target="#edit-email" href="javascript:void(0);">{{ user.email }}</a>
+            <a data-toggle="collapse" data-target="#edit-email" href="javascript:void(0);"><i class="glyphicon glyphicon-pencil"></i></a>
 
-          <a data-toggle="collapse" data-target="#edit-email" href="javascript:void(0);">{{ user.email }}</a>
-          <a data-toggle="collapse" data-target="#edit-email" href="javascript:void(0);"><i class="glyphicon glyphicon-pencil"></i></a>
-
-          <div id="edit-email" class="collapse">
-            <form method="post" class="form" name="edit_email" data-ng-submit="changeEmail(edit_email)" novalidate>
-              <div class="form-group">
-                <input type="text" name="newEmail" class="form-control" data-ng-model="user.newEmail" placeholder="New E-mail"
-                       mongoose-error/>
-              </div>
-              <div class="form-group">
-                <input type="text" name="newEmailConfirm" class="form-control" data-ng-model="user.newEmailConfirm" placeholder="New E-mail Confirmation" />
-              </div>
-              <p class="text-danger" ng-show="edit_email.newEmail.$error.mongoose">
-                {{ errors.changeEmailError }}
-              </p>
-              <p class="help-block text-success"> {{ changeEmailMessage }} </p>
-              <button class="btn btn-lg btn-primary" type="submit">Save</button>
-            </form>
+            <div id="edit-email" class="collapse">
+              <form method="post" class="form" name="edit_email" data-ng-submit="changeEmail(edit_email)" novalidate>
+                <div class="form-group">
+                  <input type="text" name="newEmail" class="form-control" data-ng-model="user.newEmail" placeholder="New E-mail"
+                         mongoose-error/>
+                </div>
+                <div class="form-group">
+                  <input type="text" name="newEmailConfirm" class="form-control" data-ng-model="user.newEmailConfirm" placeholder="New E-mail Confirmation" />
+                </div>
+                <p class="text-danger" ng-show="edit_email.newEmail.$error.mongoose">
+                  {{ errors.changeEmailError }}
+                </p>
+                <p class="help-block text-success"> {{ changeEmailMessage }} </p>
+                <button class="btn btn-lg btn-primary" type="submit">Save</button>
+              </form>
+            </div>
           </div>
-        </div>
-        <div id="password">
-          <i class="glyphicon glyphicon-wrench text-muted"></i>
+          <div id="password">
+            <i class="glyphicon glyphicon-wrench text-muted"></i>
 
-          <a data-toggle="collapse" data-target="#edit-password" href="javascript:void(0);">Edit Password</a>
+            <a data-toggle="collapse" data-target="#edit-password" href="javascript:void(0);">Edit Password</a>
 
-          <div id="edit-password" class="collapse">
-            <form method="post" class="form" name="form" ng-submit="changePassword(form)" novalidate>              
-              <div class="form-group">
-                <input type="password" name="password" class="form-control" placeholder="Current Password" data-ng-model="user.oldPassword"
-                       mongoose-error/>    
-                <p class="text-danger" ng-show="form.password.$error.mongoose">
-                    {{ errors.changePasswordError }}
-                </p>
-              </div>
-              <div class="form-group">
-                <input type="password" name="newPassword" class="form-control" placeholder="New Password" data-ng-model="user.newPassword" 
-                       ng-minlength="3"
-                       required/>
-                <p class="text-danger"
-                   ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || submitted)">
-                  Password must be at least 3 characters.
-                </p>
-              </div>
-              <p class="help-block text-success"> {{ message }} </p>
-              <button class="btn btn-lg btn-primary" type="submit">Save</button>
-            </form>
+            <div id="edit-password" class="collapse">
+              <form method="post" class="form" name="form" ng-submit="changePassword(form)" novalidate>              
+                <div class="form-group">
+                  <input type="password" name="password" class="form-control" placeholder="Current Password" data-ng-model="user.oldPassword"
+                         mongoose-error/>    
+                  <p class="text-danger" ng-show="form.password.$error.mongoose">
+                      {{ errors.changePasswordError }}
+                  </p>
+                </div>
+                <div class="form-group">
+                  <input type="password" name="newPassword" class="form-control" placeholder="New Password" data-ng-model="user.newPassword" 
+                         ng-minlength="3"
+                         required/>
+                  <p class="text-danger"
+                     ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || submitted)">
+                    Password must be at least 3 characters.
+                  </p>
+                </div>
+                <p class="help-block text-success"> {{ message }} </p>
+                <button class="btn btn-lg btn-primary" type="submit">Save</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </div>

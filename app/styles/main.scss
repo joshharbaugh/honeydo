@@ -1,6 +1,51 @@
 $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
 
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+@import "variables";
+@import "mixins";
+@import "path";
+@import "core";
+@import "larger";
+@import "fixed-width";
+@import "list";
+@import "bordered-pulled";
+@import "spinning";
+@import "rotated-flipped";
+@import "stacked";
+@import "icons";
+
+@font-face {
+    font-family: 'AkkuratRegular';
+    src: url('fonts/akkurat.eot');
+    src: url('fonts/akkurat.eot?#iefix') format('embedded-opentype'),
+         url('fonts/akkurat.woff') format('woff'),
+         url('fonts/akkurat.ttf') format('truetype'),
+         url('fonts/akkurat.svg#AkkuratRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AkkuratBold';
+    src: url('fonts/akkurat-bold.eot');
+    src: url('fonts/akkurat-bold.eot?#iefix') format('embedded-opentype'),
+         url('fonts/akkurat-bold.woff') format('woff'),
+         url('fonts/akkurat-bold.ttf') format('truetype'),
+         url('fonts/akkurat-bold.svg#AkkuratBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AkkuratLight';
+    src: url('fonts/akkurat-light.eot');
+    src: url('fonts/akkurat-light.eot?#iefix') format('embedded-opentype'),
+         url('fonts/akkurat-light.woff') format('woff'),
+         url('fonts/akkurat-light.ttf') format('truetype'),
+         url('fonts/akkurat-light.svg#AkkuratLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .browsehappy {
     margin: 0.2em 0;
@@ -9,30 +54,79 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
     padding: 0.2em 0;
 }
 
-/* Space out content a bit */
 body {
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.footer {
-    padding-left: 15px;
-    padding-right: 15px;
+a, button {
+    -o-transition:0.3s;
+    -ms-transition:0.3s;
+    -moz-transition:0.3s;
+    -webkit-transition:0.3s;
+    transition:0.3s
 }
 
-/* Custom page header */
-.header {
-    border-bottom: 1px solid #e5e5e5;
+.site-title {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: .6em;
+
+    a:hover {
+        text-decoration: none;
+    }
 }
 
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
+h1 {
+    font-family: 'Pacifico', sans-serif;
+}
+
+h2,h3,h4,h5,h6 {
+    font-family: AkkuratBold, Helvetica, sans-serif;
+}
+
+.form-control,
+.input-lg,
+.input-group-lg > .form-control,
+.input-group-lg > .input-group-addon,
+.input-group-lg > .input-group-btn > .btn {
+    -webkit-border-radius: $border-radius-small;
+    -moz-border-radius: $border-radius-small;
+    border-radius: $border-radius-small;
+}
+
+/** Site Navigation */
+.navigation {
+    .nav-pills > li {
+        float: none;
+        margin: 0 auto 10px;
+
+        a {
+            text-align: center;
+            font-size: 20px;
+            width: 44px;
+            height: 44px;
+            margin: 0 auto;
+            padding: 10px;
+            background-color: #f7f7f7;
+
+            &:hover {
+                background-color: #eee;
+            }
+
+            &.btn-signup {
+                color: white;
+                background-color: #5cb85c;
+                border-color: #4cae4c;
+                height: auto;
+                width: 60%;
+            }
+        }
+
+        &.active a {
+            background-color: #428bca;
+        }
+    }
 }
 
 /* Custom page footer */
@@ -51,6 +145,11 @@ body {
     margin-top: 1em;
     padding: 0;
     list-style: none;
+
+    .completed {
+        text-decoration: line-through;
+        color: #ccc;
+    }
 }
 .placeholder {
     border: 2px dotted #999;
@@ -62,18 +161,8 @@ body {
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-    .container {
-        max-width: 730px;
-    }
-
-    /* Remove the padding we set earlier */
-    .header,
-    .footer {
-        padding-left: 0;
-        padding-right: 0;
-    }
-    /* Space out the masthead */
-    .header {
-        margin-bottom: 30px;
+    .container-narrow {
+        max-width: 320px;
+        margin: 0 auto;
     }
 }

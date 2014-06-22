@@ -1,8 +1,8 @@
 <span class="input-group-addon">
-  <input type="checkbox">
+  <input type="checkbox" data-ng-model="todo.completed">
 </span>
 <input type="hidden" data-ng-model="todo._id" name="_id" />
-<input type="text" data-ng-model="todo.name" name="name" class="form-control" />
+<input type="text" data-ng-model="todo.name" name="name" class="form-control" data-ng-class="{'completed': todo.completed}" />
 <span class="input-group-btn">
     <button type="button" data-ng-click="remove(todo)" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
 </span>

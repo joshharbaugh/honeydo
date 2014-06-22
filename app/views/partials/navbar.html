@@ -1,12 +1,23 @@
-<div class="header" ng-controller="NavbarCtrl">
-  <ul class="nav nav-pills pull-right">
-    <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
-        <a ng-href="{{item.link}}">{{item.title}}</a>
-    </li>
-    <li ng-class="{active: isActive('/settings')}"><a href="/settings" data-toggle="tooltip" data-placement="bottom" title="Settings"><i class="glyphicon glyphicon-cog"></i></a></li>
-    <li ng-hide="currentUser" ng-class="{active: isActive('/login')}"><a href="/login" data-toggle="tooltip" data-placement="bottom" title="Login"><i class="glyphicon glyphicon-log-in"></i></a></li>
-    <li ng-hide="currentUser" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
-    <li ng-show="currentUser" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()" data-toggle="tooltip" data-placement="bottom" title="Logout" ><i class="glyphicon glyphicon-log-out"></i></a></li>
-  </ul>
-  <h3 class="text-muted">honeydo</h3>
+<div class="navigation" ng-controller="NavbarCtrl">
+  <div class="row">
+    <h1 class="text-muted site-title">
+      <a href="/">honeydo</a>
+    </h1>
+  </div>
+  <div class="row" data-ng-class="{hidden: isActive(['/login', '/signup'])}">
+    <ul class="nav nav-pills">
+      <li data-ng-repeat="item in menu" data-ng-class="{active: isActive(item.link)}">
+          <a data-ng-href="{{item.link}}" data-toggle="tooltip" data-placement="right" title="{{ item.tooltip }}" data-ng-bind-html="item.title"></a>
+      </li>
+      <li data-ng-hide="currentUser" data-ng-class="{active: isActive('/login')}">
+        <a href="/login" data-toggle="tooltip" data-placement="right" title="Login"><i class="glyphicon glyphicon-log-in"></i></a>
+      </li>
+      <li data-ng-hide="currentUser" data-ng-class="{active: isActive('/signup')}">
+        <a href="/signup" class="btn btn-signup">Sign up</a>
+      </li>
+      <li data-ng-show="currentUser" data-ng-class="{active: isActive('/logout')}">
+        <a href="" data-ng-click="logout()" data-toggle="tooltip" data-placement="right" title="Logout" ><i class="glyphicon glyphicon-log-out"></i></a>
+      </li>
+    </ul>
+  </div>
 </div>

@@ -20,9 +20,10 @@ angular.module('honeydoApp')
               // Update todo
               Todo.update(todo).$promise
               .then( function() {
-                var checked = element[0].firstChild.firstElementChild.checked;
-                if(checked) {
-                  element.find('input[type="text"]').css({'text-decoration': 'line-through', 'color': '#ccc'});
+                if(todo.completed) {
+                  element.find('input[type="text"]').addClass('completed');
+                } else {
+                  element.find('input[type="text"]').removeClass('completed');
                 }
               })
               .catch( function(err) {

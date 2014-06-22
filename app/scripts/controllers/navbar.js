@@ -8,13 +8,11 @@
  * Controller of the honeydoApp
  */
 angular.module('honeydoApp')
-  .controller('NavbarCtrl',['$scope', '$location', 'Auth', function ($scope, $location, Auth) {
-    // Initialize Bootstrap Tooltip plugin
-    angular.element('[data-toggle="tooltip"]').tooltip();
-
+  .controller('NavbarCtrl',['$scope', '$location', 'Auth', '$timeout', function ($scope, $location, Auth, $timeout) {
     $scope.menu = [{
-      'title': 'Dashboard',
-      'link': '/'
+      'title': '<i class="glyphicon glyphicon-cog"></i>',
+      'link': '/settings',
+      'tooltip': 'Settings'
     }];
     
     $scope.logout = function() {
@@ -25,6 +23,19 @@ angular.module('honeydoApp')
     };
     
     $scope.isActive = function(route) {
-      return route === $location.path();
+      if( typeof route !== 'object') {
+        return route === $location.path();
+      } else {
+        for (var prop in route) {
+          if(route[prop] === $location.path()) {
+            return true;
+          }
+        }
+      }
     };
+
+    // Initialize Bootstrap Tooltip plugin
+    $timeout(function() {
+      angular.element('[data-toggle="tooltip"]').tooltip();
+    });
   }]);
