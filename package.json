@@ -16,6 +16,7 @@
     "connect-mongo": "~0.4.1",
     "passport": "~0.2.0",
     "passport-local": "~0.1.6",
+    "passport-facebook": "~1.0.3",
     "ejs": "~0.8.4",
     "twilio": "~1.6.0"
   },

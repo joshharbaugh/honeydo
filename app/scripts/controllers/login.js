@@ -30,4 +30,17 @@ angular.module('honeydoApp')
         });
       }
     };
+  }])
+
+  /**
+   * @ngdoc function
+   * @name honeydoApp.controller:FacebookAuthCtrl
+   * @description
+   * # FacebookAuthCtrl
+   * Controller of the honeydoApp
+   */
+  .controller('FacebookAuthCtrl',[function () {
+  
+    window.location.replace('http://localhost:9000/auth/facebook');
+  
   }]);

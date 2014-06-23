@@ -2,7 +2,9 @@
 
 var should = require('should'),
     mongoose = require('mongoose'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    app = require('../../../server'),
+    request = require('supertest');
 
 var user;
 
@@ -12,7 +14,21 @@ describe('User Model', function() {
       provider: 'local',
       name: 'Fake User',
       email: 'test@test.com',
-      password: 'password'
+      password: 'password',
+      todos: [
+        {
+          name: 'Run for president',
+          info: '',
+          completed: false,
+          createdAt: new Date()
+        },
+        {
+          name: 'Eat at Joe\'s',
+          info: '',
+          completed: true,
+          createdAt: new Date()
+        }
+      ]
     });
 
     // Clear users before testing
@@ -55,6 +71,19 @@ describe('User Model', function() {
 
   it("should not authenticate user if password is invalid", function() {
     user.authenticate('blah').should.not.be.true;
+  });
+
+  it('should respond with list of users todos', function(done) {
+    user.authenticate('password').should.be.true;
+    request(app)
+      .get('/api/users/me/todos')
+      .expect(200)
+      //.expect('Content-Type', /json/)
+      .end(function(err, res) {
+        if (err) return done(err);
+        res.body.should.be.instanceof(Array);
+        done();
+      });
   });
 
 });

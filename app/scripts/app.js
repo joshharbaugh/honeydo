@@ -46,6 +46,10 @@ angular.module('honeydoApp', [
         controller: 'SettingsCtrl',
         authenticate: true
       })
+      .when('/auth/facebook', {
+        templateUrl: 'partials/facebookAuth',
+        controller: 'FacebookAuthCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
