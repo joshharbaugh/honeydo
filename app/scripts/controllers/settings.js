@@ -8,7 +8,7 @@
  * Controller of the honeydoApp
  */
 angular.module('honeydoApp')
-  .controller('SettingsCtrl',['$scope', 'User', 'Auth', function ($scope, User, Auth) {
+  .controller('SettingsCtrl',['$scope', 'User', 'Auth', '$location', function ($scope, User, Auth, $location) {
     $scope.errors = {};
     $scope.user = User.get() || {};
 
@@ -59,4 +59,20 @@ angular.module('honeydoApp')
         });
       }
 		};
+
+    $scope.deleteAccount = function(user) {
+      var confirm = window.confirm('Warning: This can not be undo. Continue?');
+      if(confirm) {
+        Auth.deleteUser(user)
+        .then( function() {
+          Auth.logout()
+          .then(function() {
+            $location.path('/login');
+          });
+        })
+        .catch( function() {
+
+        });
+      }
+    };
   }]);

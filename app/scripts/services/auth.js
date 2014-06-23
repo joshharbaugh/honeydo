@@ -69,6 +69,28 @@ angular.module('honeydoApp')
       },
 
       /**
+       * Delete a user
+       * 
+       * @param  {Object}   user     - user info
+       * @param  {Function} callback - optional
+       * @return {Promise}            
+       */
+      deleteUser: function(user, callback) {
+        var cb = callback || angular.noop;
+
+        return User.delete({
+          id: 'me'
+        },
+          function(user) {
+            $rootScope.currentUser = {};
+            return cb(user);
+          },
+          function(err) {
+            return cb(err);
+          }).$promise;
+      },
+
+      /**
        * Change email address
        *  
        * @param  {String}   newEmail 
